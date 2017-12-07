@@ -9,6 +9,7 @@ type Person struct {
 	LastName  string `json:"lastname"`
 	Username  string `json:"username"`
 	Hash      string `json:"hash,omitempty"`
+	Addresses Addresses `json:"addresses"`
 }
 
 func (p *Person) IsPasswordValid(password string) (bool, error) {
@@ -17,4 +18,9 @@ func (p *Person) IsPasswordValid(password string) (bool, error) {
 		return false, err
 	}
 	return true, nil
+}
+
+func (p *Person) AddAddress(address Address) Addresses {
+	p.Addresses = append(p.Addresses, address)
+	return p.Addresses
 }

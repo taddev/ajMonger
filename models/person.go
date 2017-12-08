@@ -5,10 +5,11 @@ import (
 )
 
 type Person struct {
-	FirstName string `json:"firstname"`
-	LastName  string `json:"lastname"`
-	Username  string `json:"username"`
-	Hash      string `json:"hash,omitempty"`
+	FirstName string    `json:"firstname"`
+	LastName  string    `json:"lastname"`
+	Username  string    `json:"username"`
+	Hash      string    `json:"hash,omitempty"`
+	Emails    []string  `json:"emails"`
 	Addresses Addresses `json:"addresses"`
 }
 
@@ -23,4 +24,9 @@ func (p *Person) IsPasswordValid(password string) (bool, error) {
 func (p *Person) AddAddress(address Address) Addresses {
 	p.Addresses = append(p.Addresses, address)
 	return p.Addresses
+}
+
+func (p *Person) AddEmail(email string) []string {
+	p.Emails = append(p.Emails, email)
+	return p.Emails
 }
